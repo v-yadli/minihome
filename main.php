@@ -36,13 +36,14 @@ class HomepageServer {
 //      throw new Exception("Access Denied");
 //    }
 //  }
-  static $whoami_documentation = "return user information";
+  static $whoami_documentation = "return some information about you.";
   public function whoami() {
     return array("your User Agent" => $_SERVER["HTTP_USER_AGENT"],
                  "your IP" => $_SERVER['REMOTE_ADDR'],
                  "you access this from" => $_SERVER["HTTP_REFERER"]);
   }
 
+  static $whoareyou_documentation = "return Yatao's information";
   public function whoareyou()
   {
     return "My name is Yatao Li.";
