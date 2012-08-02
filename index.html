@@ -14,9 +14,9 @@
 jQuery(document).ready(function($) {
     $('body').terminal(
     {
-    	msg: function(command, term)
+    	msg: function(args)
     	{
-    		this.echo("Hello!");
+    		this.echo("Hello! You typed "+args);
     	}
     }	,
     {
