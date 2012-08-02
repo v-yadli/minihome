@@ -12,7 +12,14 @@
     <link href="css/jquery.terminal.css" rel="stylesheet"/>
     <script>
 jQuery(document).ready(function($) {
-    $('body').terminal("main.php", {
+    $('body').terminal(
+    {
+    	msg: function(command, term)
+    	{
+    		term.echo("Hello!");
+    	}
+    }	,
+    {
         login: false,
         greetings: "Welcome to Yatao's homepage!",
         clear: false,
