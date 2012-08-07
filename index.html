@@ -89,7 +89,10 @@ jQuery(document).ready(function($) {
     	},
     	diary: function(args)
     	{
-    		OpenStage("http://v-yadli.github.com/diary/diary.html",true);
+    		if(!args)
+    			OpenStage("http://v-yadli.github.com/diary/diary.html",true);
+    		else
+    			OpenStage("http://v-yadli.github.com/diary/" + args + ".html",true);
     	}
     }	,
     {
