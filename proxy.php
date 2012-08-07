@@ -13,21 +13,21 @@ else if ( $_GET['nextDiaryOf'] != "" )
 	foreach($html->find('tr') as $row) {
 		foreach($row->find('td') as $element)
 		{
-			$text = $element->plaintext;
-			if($text == $target)
+			$next = $element->plaintext;
+			if($next == $target)
 			{
 				$found = TRUE;
 			}
-			$next = $text;
+			
 			if($found == TRUE)
 			{
 				$acquired = TRUE;
 				break;
 			}
 		}
-		if($acquired)
+		if($acquired == TRUE)
 			break;
 	}
-	echo $text;
+	echo $next;
 }
 ?>

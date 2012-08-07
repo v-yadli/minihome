@@ -98,6 +98,7 @@ function GetNextDiaryEntry()
 		data:		{'nextDiaryOf':g_current_diary_page},
 	 	success:	function(data) {
 	 					ret = data;
+	 					aleret(data);
 					},
 		async:		false
 		}
