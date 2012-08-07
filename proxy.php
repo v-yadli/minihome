@@ -9,6 +9,7 @@ else if ( $_GET['nextDiaryOf'] != "" )
 	$html = file_get_html('http://v-yadli.github.com/diary/diary.html');
 	$found = FALSE;
 	$acquired = FALSE;
+	echo $target;
 	foreach($html->find('tr') as $row) {
 		foreach($row->find('td') as $element)
 		{
