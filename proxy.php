@@ -5,5 +5,4 @@ else if ( $_POST['nextDiaryOf'] != "" )
 {
 	echo "2012-02-14";
 }
-echo "Hello!"
 ?>
