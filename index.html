@@ -10,13 +10,81 @@
     <script src="js/jquery.mousewheel-min.js"></script>
     <script src="js/jquery.terminal.js"></script>
     <link href="css/jquery.terminal.css" rel="stylesheet"/>
+    <style type="text/css">
+#terminal {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 98%;
+	height: 97%;
+}
+#page{
+	position: absolute;
+	background:#000000;
+	color:#ffffff;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+#stage{
+	width:100%;
+	height:80%;
+}
+	</style>
     <script>
+var g_stage_toggled = false;
+var g_terminal_full_height = "97%";
+var g_terminal_compact_height = "15%";
+function OpenStage(content, link)
+{
+	if(!g_stage_toggled)
+	{
+		g_stage_toggled = true;
+		$('#terminal').animate({height:g_terminal_compact_height},100);
+		$('#stage').slideToggle(100);
+	}
+	if(content)
+	{
+		if(!link)
+			$('#stage').html(content);
+		else
+			$('#stage').load("proxy.php",{'url':content} );
+	}
+}
+function CloseStage()
+{
+	if(!g_stage_toggled)
+		return;
+	g_stage_toggled = false;
+	$('#terminal').animate({height:g_terminal_full_height},100);
+	$('#stage').slideToggle(100);
+}
 jQuery(document).ready(function($) {
-    $('body').terminal(
+	$('#stage').slideUp(0);
+    $('#terminal').terminal(
     {
-    	msg: function(args)
+    	open: function(args)
     	{
-    		this.echo("Hello! You typed "+args);
+    		OpenStage();
+    	},
+    	about: function(args)
+    	{
+			OpenStage("<h1>My name is Yatao Li.</h1>");
+    	},
+    	help: function(args)
+    	{
+    		this.echo("Available commands:");
+    		this.echo("about")
+    		this.echo("close")
+    	},
+    	close: function(args)
+    	{
+    		CloseStage();
+    	},
+    	diary: function(args)
+    	{
+    		OpenStage("http://v-yadli.github.com/diary/diary.html",true);
     	}
     }	,
     {
@@ -29,5 +97,9 @@ jQuery(document).ready(function($) {
     </script>
   </head>
 <body>
+	<div id="page">
+		<div id="stage"><frame src = "http://v-yadli.github.com/diary/diary.html" /></div>
+		<div id="terminal"></div>
+	</div>
 </body>
 </html>
