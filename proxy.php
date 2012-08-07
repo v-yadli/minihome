@@ -1,3 +1,3 @@
 <?php
-echo $_POST['url'];
+include( $_POST['url'] );
 ?>
