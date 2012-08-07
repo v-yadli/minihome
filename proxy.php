@@ -14,6 +14,7 @@ else if ( $_GET['nextDiaryOf'] != "" )
 		foreach($row->find('td') as $element)
 		{
 			$next = $element->plaintext;
+			echo $next;
 			if($found == TRUE)
 			{
 				$acquired = TRUE;
