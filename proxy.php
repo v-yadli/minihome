@@ -3,7 +3,7 @@ if($_POST['url'] != "")
 	echo file_get_contents( $_POST['url'] );
 else if ( $_GET['nextDiaryOf'] != "" )
 {
-	$target = $_GET['nextDiaryOf'];
+	$target = trim($_GET['nextDiaryOf']);
 	require('simple_html_dom.php');
 	$next = "";
 	$html = file_get_html('http://v-yadli.github.com/diary/diary.html');
@@ -13,7 +13,7 @@ else if ( $_GET['nextDiaryOf'] != "" )
 	foreach($html->find('tr') as $row) {
 		foreach($row->find('td') as $element)
 		{
-			$next = $element->plaintext;
+			$next = trim($element->plaintext);
 			echo $next;
 			if($found == TRUE)
 			{
