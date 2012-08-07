@@ -48,8 +48,10 @@ function OpenStage(content, link)
 	{
 		if(!link)
 			$('#stage').html(content);
-		else
+		else{
+			$('#stage').html("<h1>Loading...</h1>");
 			$('#stage').load("proxy.php",{'url':content} );
+		}
 	}
 }
 function CloseStage()
