@@ -5,7 +5,6 @@ else if ( $_GET['nextDiaryOf'] != "" )
 {
 	$target = $_GET['nextDiaryOf'];
 	require('simple_html_dom.php');
-	$table = array();
 	$next = "";
 	$html = file_get_html('http://v-yadli.github.com/diary/diary.html');
 	$found = FALSE;
@@ -14,20 +13,20 @@ else if ( $_GET['nextDiaryOf'] != "" )
 		foreach($row->find('td') as $element)
 		{
 			$next = $element->plaintext;
-			if($next == $target)
-			{
-				$found = TRUE;
-			}
-			
 			if($found == TRUE)
 			{
 				$acquired = TRUE;
+				echo $next;
 				break;
+			}
+			
+			if($next == $target)
+			{
+				$found = TRUE;
 			}
 		}
 		if($acquired == TRUE)
 			break;
 	}
-	echo $next;
 }
 ?>
