@@ -39,6 +39,9 @@ a:link{
 var g_stage_toggled = false;
 var g_terminal_full_height = "97%";
 var g_terminal_compact_height = "15%";
+var g_current_mode = "";
+var g_current_diary_page = "";
+
 function OpenStage(content, link)
 {
 	if(!g_stage_toggled)
@@ -65,6 +68,34 @@ function CloseStage()
 	$('#terminal').animate({height:g_terminal_full_height},100);
 	$('#stage').slideToggle(100);
 }
+function OpenDiary(args)
+{
+	if(!args)
+	{
+		OpenStage("http://v-yadli.github.com/diary/diary.html",true);
+		g_current_diary_page = "";
+	}
+	else
+	{
+		OpenStage("http://v-yadli.github.com/diary/" + args + ".html",true);
+		g_current_diary_page = args;
+	}
+	g_current_mode = "diary";
+}
+function GetNextDiaryEntry()
+{
+	var ret = "";
+	$.ajax({
+		url:		'proxy.php',
+		data:		{'nextDiaryOf':g_current_diary_page},
+	 	success:	function(data) {
+	 					ret = data;
+					},
+		async:		false
+		}
+	);
+	return ret;
+}
 jQuery(document).ready(function($) {
 	$('#stage').slideUp(0);
     $('#terminal').terminal(
@@ -87,12 +118,25 @@ jQuery(document).ready(function($) {
     	{
     		CloseStage();
     	},
-    	diary: function(args)
+    	diary: OpenDiary,
+    	n: function(args)
     	{
-    		if(!args)
-    			OpenStage("http://v-yadli.github.com/diary/diary.html",true);
-    		else
-    			OpenStage("http://v-yadli.github.com/diary/" + args + ".html",true);
+    		var notsure = false;
+    		switch(g_current_mode)
+    		{
+    			case "diary":
+				if(g_current_diary_page == "")
+					notsure = true;
+				else{
+					OpenDiary(GetNextDiaryEntry());
+				}
+    			break;
+    			default:
+    				notsure = true;
+    			break;
+    		}
+    		if(notsure)
+    			this.echo("Not sure where is the next page. I'm sorry.");
     	}
     }	,
     {
