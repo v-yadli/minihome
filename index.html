@@ -74,6 +74,28 @@ function OpenStage(content, link)
 		}
 	}
 }
+function ReadLine(p,_term,callback)
+{
+    _term.push(function(command,term)
+    {
+        term.pop();
+        callback(command);
+    },{prompt: p});
+}
+function GetCommentPageName()
+{
+    var page = "";
+    switch(g_current_mode)
+    {
+        case 'diary':
+        page = g_current_diary_page;
+        break;
+        case 'about':
+        page = 'about';
+        break;
+    }
+    return page;
+}
 function CloseStage()
 {
 	if(!g_stage_toggled)
@@ -120,6 +142,7 @@ jQuery(document).ready(function($) {
     	},
     	about: function(args)
     	{
+            g_current_mode = "about";
 			OpenStage("<h1>My name is Yatao Li.</h1><img src=\"yatao.jpg\"/>");
     	},
     	help: function(args)
@@ -138,6 +161,63 @@ jQuery(document).ready(function($) {
             this.echo("Password updated.");
         },
     	diary: OpenDiary,
+        show_comments: function(args)
+        {
+            var page = GetCommentPageName();
+            var result = "";
+            $.ajax({
+                url:		'comments.php',
+                data:		{
+                    'page':page,
+                    'action':'show'
+                },
+                success:	function(data) {
+                    result = data;
+                },
+                async:		false
+            }
+            );
+            this.echo(result);
+        },
+        add_comments: function(args)
+        {
+            var page = GetCommentPageName();
+            this.echo("Please fill in some essential sections before submitting the comment. Hit enter directly to leave it blank.");
+            this.echo("To end the comment, type a single-line 'EOF'(not including '').");
+            ReadLine("name:",this,function(name)
+            {
+                ReadLine("email:",this,function(email))
+                {
+                    var content = "";
+                    this.push(function(command,term)
+                    {
+                        if(command == "EOF")
+                        {
+                            var result = "";
+                            $.ajax({
+                                url:		'comments.php',
+                                data:		{
+                                    'page':page,
+                                    'action':'add',
+                                    'author':author,
+                                    'email':email,
+                                    'content':content
+                                },
+                                success:	function(data) {
+                                    result = data;
+                                },
+                                async:		false
+                            }
+                            );
+                            this.echo(result);
+                            return;
+                        }
+                        content = content + "\n" + command;
+                    }, {prompt:"..."});
+                });
+            });
+
+        },
     	n: function(args)
     	{
     		var notsure = false;
