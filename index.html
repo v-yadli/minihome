@@ -9,6 +9,7 @@
     <script src="js/jquery-1.7.1.min.js"></script>
     <script src="js/jquery.mousewheel-min.js"></script>
     <script src="js/jquery.terminal.js"></script>
+    <script src="md5.js"></script>
     <link href="css/jquery.terminal.css" rel="stylesheet"/>
     <style type="text/css">
 #terminal {
@@ -49,6 +50,7 @@ var g_terminal_full_height = "97%";
 var g_terminal_compact_height = "15%";
 var g_current_mode = "";
 var g_current_diary_page = "";
+var g_password = "";
 
 function OpenStage(content, link)
 {
@@ -64,7 +66,11 @@ function OpenStage(content, link)
 			$('#stage').html(content);
 		else{
 			$('#stage').html("<h1>Loading...</h1>");
-			$('#stage').load("proxy.php",{'url':content} );
+            $('#stage').load("proxy.php",
+            {
+                'url':content,
+                'password':md5_hex(g_password)
+            } );
 		}
 	}
 }
@@ -125,7 +131,12 @@ jQuery(document).ready(function($) {
     	close: function(args)
     	{
     		CloseStage();
-    	},
+        },
+        passwd: function(args)
+        {
+            g_password = args;
+            this.echo("Password updated.");
+        }
     	diary: OpenDiary,
     	n: function(args)
     	{

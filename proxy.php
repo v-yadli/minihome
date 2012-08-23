@@ -1,6 +1,11 @@
 <?php
 if($_POST['url'] != "")
-	echo file_get_contents( $_POST['url'] );
+{
+    $password_md5 = $_POST['password'];
+    if($password_md5 == md5("123"))
+        echo file_get_contents( $_POST['url'] );
+    else echo "Access Denied. Wrong password.";
+}
 else if ( $_GET['nextDiaryOf'] != "" )
 {
 	$target = trim($_GET['nextDiaryOf']);
