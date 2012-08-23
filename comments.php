@@ -31,9 +31,16 @@ function add_comment($page_name,$author,$email,$content)
     fclose($fh);*/
     if(FALSE==file_put_contents($page_name, $file_content))
     {
-        echo "System internal failure. Mail Yatao for a fix, sorry.";
+        echo "System internal failure. Sorry for this. A mail will be sent to Yatao for a fix.";
+        mail("glocklee@gmail.com","Comment failure",
+            "Comment failure detected. Go fix it Yadli!!!");
     }else
-    echo "Add comment successful.";
+    {
+        echo "Add comment successful.";
+    }
+    mail("glocklee@gmail.com","New comment",
+        "$author ($email) have commented to $page_name:\n".
+        $content);
 }
  
 if
