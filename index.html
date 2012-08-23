@@ -184,9 +184,9 @@ jQuery(document).ready(function($) {
             var page = GetCommentPageName();
             this.echo("Please fill in some essential sections before submitting the comment. Hit enter directly to leave it blank.");
             this.echo("To end the comment, type a single-line 'EOF'(not including '').");
-            ReadLine("name:",this,function(name,term)
+            ReadLine("name:",this,function(name,term1)
             {
-                ReadLine("email:",term,function(email,term)
+                ReadLine("email:",term1,function(email,term2)
                 {
                     var content = "";
                     this.push(function(command,term)
