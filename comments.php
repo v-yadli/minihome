@@ -1,4 +1,5 @@
 <?php
+/*
 function show_comment()
 {
     $result = file_get_contents('comments/'+$page_name);
@@ -17,9 +18,10 @@ function add_comment($author,$email,$content)
     file_put_contents('comments/'+$page_name, $file_content);
     echo "Add comment successful.";
 }
-
+ */
 $page_name = $_GET['page'] + "_comments.txt";
 echo $page_name;
+/*
 if
 (
     strpos($page_name,'..') != false ||
@@ -39,8 +41,5 @@ if
         add_comment($_GET['author'],$_GET['email'],$_GET['content']);
         break;
     }
-}
-
-echo "??????";
-
+}*/
 ?>
