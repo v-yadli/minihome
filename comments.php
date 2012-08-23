@@ -1,5 +1,5 @@
 <?php
-$page_name = $_POST['page'] + "_comments.txt";
+$page_name = $_GET['page'] + "_comments.txt";
 if
 (
     strpos($page_name,'..') != false ||
@@ -16,7 +16,7 @@ if
         show_comment();
         break;
     case 'add':
-        add_comment($_POST['author'],$_POST['email'],$_POST['content']);
+        add_comment($_GET['author'],$_GET['email'],$_GET['content']);
         break;
     }
 }
