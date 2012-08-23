@@ -38,7 +38,7 @@ function add_comment($page_name,$author,$email,$content)
     {
         echo "Add comment successful.";
     }
-    mail("glocklee@gmail.com","New comment",
+    echo mail("glocklee@gmail.com","New comment",
         "$author ($email) have commented to $page_name:\n".
         $content);
 }
