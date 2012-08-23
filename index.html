@@ -69,7 +69,7 @@ function OpenStage(content, link)
             $('#stage').load("proxy.php",
             {
                 'url':content,
-                'password':md5_hex(g_password)
+                'password':hex_md5(g_password)
             } );
 		}
 	}
