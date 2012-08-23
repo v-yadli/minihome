@@ -14,9 +14,10 @@ function add_comment($page_name,$author,$email,$content)
     $file_content = file_get_contents( $page_name );
     if($file_content == false)
         $file_content = '';
-    $file_content += "From $author ($email) ".date(DATE_RFC822).":\n".
+    $file_content = $file_content . "From $author ($email) ".date(DATE_RFC822).":\n".
                      $content."\n";
     file_put_contents($page_name, $file_content);
+    echo $page_name."\n";
     echo "Add comment successful.";
 }
  
