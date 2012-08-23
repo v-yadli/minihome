@@ -23,7 +23,7 @@ echo $page_name;
 if
 (
     strpos($page_name,'..') != false ||
-    $page_name[0] == '/' ||
+    //$page_name[0] == '/' ||
     strpos($page_name,'~/') != false
 )
 {
@@ -41,5 +41,6 @@ if
     }
 }
 
+echo "??????";
 
 ?>
