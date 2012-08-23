@@ -1,7 +1,6 @@
 <?php
 
 $page_name = $_GET['page'] . "_comments.txt";
-echo $page_name;
 function show_comment()
 {
     $result = file_get_contents('comments/'+$page_name);
@@ -21,12 +20,10 @@ function add_comment($author,$email,$content)
     echo "Add comment successful.";
 }
  
-echo $_GET['action'];
-
-/*if
+if
 (
     strpos($page_name,'..') != false ||
-    $page_name[0] == '/' ||
+    $page_name[0] == '/'
 )
 {
     echo "No traversal injection dude.";
@@ -41,5 +38,5 @@ echo $_GET['action'];
         add_comment($_GET['author'],$_GET['email'],$_GET['content']);
         break;
     }
-}*/
+}
 ?>
