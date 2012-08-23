@@ -2,7 +2,7 @@
 
 $page_name = 'comments/' . $_GET['page'] . "_comments.txt";
 echo $page_name;
-function show_comment()
+function show_comment($page_name)
 {
     $result = file_get_contents($page_name);
     echo $page_name;
@@ -11,7 +11,7 @@ function show_comment()
     else echo $result;
 }
 
-function add_comment($author,$email,$content)
+function add_comment($page_name,$author,$email,$content)
 {
     $file_content = file_get_contents( $page_name );
     if($file_content == false)
@@ -34,10 +34,10 @@ if
     switch($_GET['action'])
     {
     case 'show':
-        show_comment();
+        show_comment($page_name);
         break;
     case 'add':
-        add_comment($_GET['author'],$_GET['email'],$_GET['content']);
+        add_comment($page_name,$_GET['author'],$_GET['email'],$_GET['content']);
         break;
     }
 }
