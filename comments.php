@@ -16,11 +16,10 @@ function add_comment($page_name,$author,$email,$content)
         $file_content = '';
     $file_content = $file_content . "From $author ($email) ".date(DATE_RFC822).":\n".
                      $content."\n";
-    if(FALSE == file_put_contents($page_name, $file_content))
-    {
-        echo "Add comment failed. Mail Yatao for a fix. Sorry.";
-    }else
-        echo "Add comment successful.";
+    $fh = fopen($page_name,"wb");
+    fwrite($fh, $file_content);
+    fclose($fh);
+    echo "Add comment successful.";
 }
  
 if
