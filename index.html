@@ -188,7 +188,7 @@ jQuery(document).ready(function($) {
                 ReadLine("email:",term1,function(email,term2)
                 {
                     var content = "";
-                    this.push(function(command,term)
+                    term2.push(function(command,term)
                     {
                         if(command == "EOF")
                         {
