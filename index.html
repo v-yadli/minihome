@@ -79,7 +79,7 @@ function ReadLine(p,_term,callback)
     _term.push(function(command,term)
     {
         term.pop();
-        callback(command);
+        callback(command,term);
     },{prompt: p});
 }
 function GetCommentPageName()
@@ -184,9 +184,9 @@ jQuery(document).ready(function($) {
             var page = GetCommentPageName();
             this.echo("Please fill in some essential sections before submitting the comment. Hit enter directly to leave it blank.");
             this.echo("To end the comment, type a single-line 'EOF'(not including '').");
-            ReadLine("name:",this,function(name)
+            ReadLine("name:",this,function(name,term)
             {
-                ReadLine("email:",this,function(email)
+                ReadLine("email:",term,function(email,term)
                 {
                     var content = "";
                     this.push(function(command,term)
