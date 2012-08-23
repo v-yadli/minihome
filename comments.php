@@ -1,6 +1,7 @@
 <?php
 
 $page_name = '/var/www/comments/' . $_GET['page'] . "_comments.txt";
+echo $page_name;
 function show_comment()
 {
     $result = file_get_contents($page_name);
