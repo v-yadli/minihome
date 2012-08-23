@@ -22,7 +22,7 @@ function add_comment($author,$email,$content)
 $page_name = $_GET['page'] . "_comments.txt";
 echo $_POST['action'];
 
-if
+/*if
 (
     strpos($page_name,'..') != false ||
     $page_name[0] == '/' ||
@@ -40,5 +40,5 @@ if
         add_comment($_GET['author'],$_GET['email'],$_GET['content']);
         break;
     }
-}
+}*/
 ?>
