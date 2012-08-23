@@ -20,7 +20,6 @@ function add_comment($author,$email,$content)
 }
  
 $page_name = $_GET['page'] . "_comments.txt";
-echo $page_name."\n";
 echo $_GET['action'];
 
 if
