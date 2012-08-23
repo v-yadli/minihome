@@ -1,5 +1,7 @@
 <?php
 
+$page_name = $_GET['page'] . "_comments.txt";
+echo $page_name;
 function show_comment()
 {
     $result = file_get_contents('comments/'+$page_name);
@@ -19,7 +21,6 @@ function add_comment($author,$email,$content)
     echo "Add comment successful.";
 }
  
-$page_name = $_GET['page'] . "_comments.txt";
 echo $_POST['action'];
 
 /*if
