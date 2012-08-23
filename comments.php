@@ -16,9 +16,10 @@ function add_comment($page_name,$author,$email,$content)
         $file_content = '';
     $file_content = $file_content . "From $author ($email) ".date(DATE_RFC822).":\n".
                      $content."\n";
-    $fh = fopen($page_name,"wb");
+/*    $fh = fopen($page_name,"wb");
     fwrite($fh, $file_content);
-    fclose($fh);
+    fclose($fh);*/
+    echo file_put_contents($page_name, $file_content);
     echo "Add comment successful.";
 }
  
