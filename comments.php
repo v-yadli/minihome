@@ -20,13 +20,13 @@ function add_comment($author,$email,$content)
 }
  
 $page_name = $_GET['page'] . "_comments.txt";
-echo $page_name;
+echo $page_name."\n";
+echo $_GET['action'];
 
 if
 (
     strpos($page_name,'..') != false ||
-    //$page_name[0] == '/' ||
-    strpos($page_name,'~/') != false
+    $page_name[0] == '/' ||
 )
 {
     echo "No traversal injection dude.";
