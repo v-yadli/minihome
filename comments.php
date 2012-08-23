@@ -19,7 +19,10 @@ function add_comment($page_name,$author,$email,$content)
 /*    $fh = fopen($page_name,"wb");
     fwrite($fh, $file_content);
     fclose($fh);*/
-    echo file_put_contents($page_name, $file_content);
+    if(FALSE==file_put_contents($page_name, $file_content))
+    {
+        echo "System internal failure. Mail Yatao for a fix, sorry.";
+    }else
     echo "Add comment successful.";
 }
  
