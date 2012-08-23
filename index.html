@@ -79,7 +79,6 @@ function ReadLine(p,_term,callback)
     _term.push(function(command,term)
     {
         callback(command,term);
-        term.pop();
     },{prompt: p});
 }
 function GetCommentPageName()
@@ -210,6 +209,8 @@ jQuery(document).ready(function($) {
                             }
                             );
                             this.echo(result);
+                            term.pop();
+                            term.pop();
                             term.pop();
                             return;
                         }
