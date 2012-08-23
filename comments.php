@@ -4,7 +4,7 @@ $page_name = '/var/www/comments/' . $_GET['page'] . "_comments.txt";
 function show_comment()
 {
     $result = file_get_contents($page_name);
-    echo $result;
+    echo $page_name;
     if($result == false)
         echo "No comments yet.";
     else echo $result;
