@@ -21,7 +21,7 @@ function add_comment($author,$email,$content)
     echo "Add comment successful.";
 }
  
-echo $_POST['action'];
+echo $_GET['action'];
 
 /*if
 (
