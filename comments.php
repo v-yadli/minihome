@@ -1,5 +1,5 @@
 <?php
-$page_name = $_POST['page'];
+$page_name = $_POST['page'] + "_comments.txt";
 if
 (
     strpos($page_name,'..') != false ||
