@@ -10,7 +10,7 @@ if
     echo "No traversal injection dude."
 }else
 {
-    switch($_POST['action'])
+    switch($_GET['action'])
     {
     case 'show':
         show_comment();
