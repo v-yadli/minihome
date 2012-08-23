@@ -19,7 +19,7 @@ function add_comment($author,$email,$content)
     echo "Add comment successful.";
 }
  */
-$page_name = $_GET['page'] + "_comments.txt";
+$page_name = $_GET['page'] . "_comments.txt";
 echo $page_name;
 /*
 if
