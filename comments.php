@@ -1,5 +1,6 @@
 <?php
 $page_name = $_GET['page'] + "_comments.txt";
+echo $page_name;
 if
 (
     strpos($page_name,'..') != false ||
