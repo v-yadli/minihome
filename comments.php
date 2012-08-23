@@ -1,9 +1,10 @@
 <?php
 
-$page_name = $_GET['page'] . "_comments.txt";
+$page_name = '/var/www/comments/' . $_GET['page'] . "_comments.txt";
 function show_comment()
 {
-    $result = file_get_contents('/var/www/comments/'+$page_name);
+    $result = file_get_contents($page_name);
+    echo $result;
     if($result == false)
         echo "No comments yet.";
     else echo $result;
@@ -11,12 +12,12 @@ function show_comment()
 
 function add_comment($author,$email,$content)
 {
-    $file_content = file_get_contents( 'comments/'+$page_name );
+    $file_content = file_get_contents( $page_name );
     if($file_content == false)
         $file_content = '';
     $file_content += "From $author ($email) ".date(DATE_RFC822).":\n".
                      $content."\n";
-    file_put_contents('comments/'+$page_name, $file_content);
+    file_put_contents($page_name, $file_content);
     echo "Add comment successful.";
 }
  
