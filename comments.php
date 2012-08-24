@@ -1,6 +1,6 @@
 <?php
-ini_set("display_errors","1");
-error_reporting(E_ALL);
+//ini_set("display_errors","1");
+//error_reporting(E_ALL);
 
 header('Expires: Sun, 15 Dec 2002 06:00:00 GMT');
 
@@ -39,13 +39,13 @@ function add_comment($page_name,$author,$email,$content)
             "Comment failure detected. Go fix it Yadli!!!");
     }else
     {
-        echo "Add comment successful.";
+        echo "Add comment successful.\n";
     }
     if(FALSE ==  mail("glocklee@gmail.com","New comment",
         "$author have commented to $page_name:\n".
         $content,
         "From: yadli@yadli.net"))
-        echo "Sendmail failed.";
+        echo "Sendmail failed.\n";
 }
  
 if
