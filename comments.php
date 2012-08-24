@@ -21,6 +21,8 @@ function show_comment($page_name)
 
 function add_comment($page_name,$author,$email,$content)
 {
+    error_reporting(E_ALL);
+    $content = "\n" . $content . "\n========================================";
     $file_content = file_get_contents( $page_name );
     if($file_content == false)
         $file_content = '';
