@@ -22,7 +22,6 @@ function show_comment($page_name)
 function add_comment($page_name,$author,$email,$content)
 {
     error_reporting(E_ALL);
-    ini_set("display_errors","stdout");
     $content = "\n" . $content . "\n========================================";
     $file_content = file_get_contents( $page_name );
     if($file_content == false)
@@ -41,10 +40,11 @@ function add_comment($page_name,$author,$email,$content)
     {
         echo "Add comment successful.";
     }
-    echo mail("glocklee@gmail.com","New comment",
+    if(FALSE ==  mail("glocklee@gmail.com","New comment",
         "$author have commented to $page_name:\n".
         $content,
-    "From: $email");
+        "From: $email"))
+        echo "Sendmail failed.";
 }
  
 if
