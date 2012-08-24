@@ -131,6 +131,20 @@ function GetNextDiaryEntry()
 	);
 	return ret;
 }
+function GetPrevDiaryEntry()
+{
+	var ret = "";
+	$.ajax({
+		url:		'proxy.php',
+		data:		{'prevDiaryOf':g_current_diary_page},
+	 	success:	function(data) {
+	 					ret = data;
+					},
+		async:		false
+		}
+	);
+	return ret;
+}
 jQuery(document).ready(function($) {
 	$('#stage').slideUp(0);
     $('#terminal').terminal(
@@ -147,8 +161,16 @@ jQuery(document).ready(function($) {
     	help: function(args)
     	{
     		this.echo("Available commands:");
+    		this.echo("open")
     		this.echo("about")
+    		this.echo("help")
     		this.echo("close")
+    		this.echo("passwd")
+    		this.echo("diary")
+    		this.echo("show_comments")
+    		this.echo("add_comments")
+    		this.echo("n")
+    		this.echo("p")
     	},
     	close: function(args)
     	{
@@ -217,25 +239,44 @@ jQuery(document).ready(function($) {
             });
 
         },
-    	n: function(args)
-    	{
-    		var notsure = false;
-    		switch(g_current_mode)
-    		{
-    			case "diary":
-				if(g_current_diary_page == "")
-					notsure = true;
-				else{
-					OpenDiary(GetNextDiaryEntry());
-				}
-    			break;
-    			default:
-    				notsure = true;
-    			break;
-    		}
-    		if(notsure)
-    			this.echo("Not sure where is the next page. I'm sorry.");
-    	}
+        n: function(args)
+        {
+            var notsure = false;
+            switch(g_current_mode)
+            {
+                case "diary":
+                if(g_current_diary_page == "")
+                notsure = true;
+                else{
+                    OpenDiary(GetNextDiaryEntry());
+                }
+                break;
+                default:
+                notsure = true;
+                break;
+            }
+            if(notsure)
+            this.echo("Not sure where is the next page. I'm sorry.");
+        },
+        p: function(args)
+        {
+            var notsure = false;
+            switch(g_current_mode)
+            {
+                case "diary":
+                if(g_current_diary_page == "")
+                notsure = true;
+                else{
+                    OpenDiary(GetPrevDiaryEntry());
+                }
+                break;
+                default:
+                notsure = true;
+                break;
+            }
+            if(notsure)
+            this.echo("Not sure where is the previous page. I'm sorry.");
+        }
     }	,
     {
         login: false,
