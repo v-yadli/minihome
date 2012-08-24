@@ -44,7 +44,7 @@ function add_comment($page_name,$author,$email,$content)
     if(FALSE ==  mail("glocklee@gmail.com","New comment",
         "$author have commented to $page_name:\n".
         $content,
-        "From: $email"))
+        "From: yadli@yadli.net"))
         echo "Sendmail failed.";
 }
  
